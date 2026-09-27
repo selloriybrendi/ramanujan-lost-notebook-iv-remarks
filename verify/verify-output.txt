@@ -1,0 +1,18 @@
+[PASS] A1 L(0,chi) = 1/2, so the residue of L(s,chi)^2 y^s/s at s=0 is 1/4  —  0.5
+[PASS] A2 Lambda(s) = (4/pi)^s Gamma((s+1)/2)^2 L(s,chi)^2 satisfies Lambda(s) = Lambda(1-s) (degree 2, omega = 1)  —  max rel. diff 5.92e-31
+[PASS] A3 hyperbola A(x) equals the sieve value (400 random x <= 10^6)
+[PASS] A4 mean of A(x)^2/sqrt(x) over 600 random x in [X/2,X], X = 10^6..10^12, equals the values in Table 1  —  0.7322, 0.7815, 0.7571, 0.8151
+[PASS] A5 partial sums of sum chi(n)d(n)n^{-1/5}: oscillation over [10^k,10^{k+1}] grows (k = 3,4,5)  —  8.970, 10.795, 14.929
+[PASS] A6 (Remark 2, not a theorem) mean of A_r(x)^2/x^{1/2+r} is of order 1 for r = -1/4, 1/4 and X = 10^5, 10^6  —  0.9876, 0.9642, 0.9567, 1.0058
+[PASS] B1 Abel sum sum sigma_s(n) sin(n alpha) r^n (r = 1 - 2e-4) is close to S(alpha)  (s = -2.5, alpha/2pi = sqrt 2)  —  Abel 0.03963219  S 0.03965117
+[PASS] B2 (19.2.2) fails for the Abel values: |L(alpha) - L(beta)| exceeds 10x the tail bound (3 quadratic irrationals x 2 values of s)  —  
+      xi=1.4142 s=-2.5: diff=+0.1408 (tail<5.2e-04)
+      xi=1.4142 s=-4.5: diff=+0.0422 (tail<1.2e-18)
+      xi=1.6180 s=-2.5: diff=+0.0658 (tail<5.4e-04)
+      xi=1.6180 s=-4.5: diff=+0.0305 (tail<1.4e-18)
+      xi=1.7321 s=-2.5: diff=-0.0464 (tail<5.5e-04)
+      xi=1.7321 s=-4.5: diff=+0.0211 (tail<1.5e-18)
+[PASS] B3 the constant c = 1/4 used in B2 is consistent: min_{d<=10^6} d*||d xi|| >= 1/4 for all six numbers
+[PASS] B4 near alpha0 = 2 pi p/q: (alpha - alpha0) S(alpha) ~ q^{s-1} zeta(1-s)  (p/q = 1/2, 1/3, 2/5, 3/7; eps = 1e-6)  —  rel. diffs 1.4e-10, 1.0e-05, 2.0e-05, 3.3e-05
+
+10/10 checks passed

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lost Notebook IV Remarks</title>
+<meta name="description" content="Calculators for two open points in Ramanujan's Lost Notebook, Part IV: the domain of Entry 12.2.3 and an Abel reading of Entry 19.2.2.">
+<style>
+:root{--bg:#fbfbf9;--fg:#1d1d1b;--mut:#6b6b66;--card:#ffffff;--line:#e3e2dc;--acc:#1f5fa8;--ok:#1b7f3b;--bad:#b3261e;--soft:#eef3fa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141413;--fg:#ecebe6;--mut:#a3a29c;--card:#1e1e1c;--line:#34332f;--acc:#7fb0ea;--ok:#6fcf8b;--bad:#f08a80;--soft:#1f2a38}}
+:root[data-theme="dark"]{--bg:#141413;--fg:#ecebe6;--mut:#a3a29c;--card:#1e1e1c;--line:#34332f;--acc:#7fb0ea;--ok:#6fcf8b;--bad:#f08a80;--soft:#1f2a38}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:880px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.4rem;margin:0 0 4px}
+.sub{color:var(--mut);margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:0 0 16px}
+.card h2{font-size:1.05rem;margin:0 0 10px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+label{font-size:.85rem;color:var(--mut);display:block;margin-bottom:3px}
+input[type=number],select{width:150px;padding:7px 9px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--fg);font-size:15px}
+input[type=range]{width:100%}
+table{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:8px}
+td{padding:6px 4px;border-top:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--mut);width:45%}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}
+.nw{white-space:nowrap}
+.ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}.mid{color:var(--acc);font-weight:600}
+.note{font-size:.85rem;color:var(--mut)}
+canvas{width:100%;height:260px;display:block;margin-top:8px}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;background:var(--soft);font-size:.8rem}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.9em}
+</style>
+</head>
+<body>
+<main>
+<h1>Two open points in Ramanujan's Lost Notebook, Part IV</h1>
+<p class="sub">Entry 12.2.3: Andrews and Berndt expect <i>L(s,χ)L(s−r,χ) = Σ χ(n)σ<sub>r</sub>(n)n<sup>−s</sup></i> to hold for Re s &gt; sup{0, Re r}.
+For r = 0 this fails: the series Σ χ(n)d(n)n<sup>−s</sup> has abscissa of convergence in [1/4, 1/3].
+Entry 19.2.2 fails also when its divergent series is read by Abel summation.
+<span class="badge" id="selftest">self-test …</span></p>
+
+<section class="card">
+<h2>1. Entry 12.2.3 (r = 0): the partial sums A(x) = Σ<sub>n≤x</sub> χ(n)d(n)</h2>
+<div class="row">
+<div><label for="x">x (1 – 10<sup>12</sup>)</label><input id="x" type="number" min="1" max="1000000000000" value="1000000"></div>
+</div>
+<table id="outA" aria-live="polite"></table>
+<label for="s1" style="margin-top:12px">s for the partial sums Σ<sub>n≤x</sub> χ(n)d(n)n<sup>−s</sup>, x ≤ 2·10<sup>5</sup>: <b id="s1v">0.20</b></label>
+<input id="s1" type="range" min="0.05" max="0.60" step="0.01" value="0.20">
+<canvas id="cv1" aria-label="partial sums of sum chi(n) d(n) n^(-s)"></canvas>
+<p id="verdict"></p>
+<p class="note">A(x) is computed exactly by the hyperbola method A(x) = 2Σ<sub>a≤√x</sub> χ(a)S(x/a) − S(√x)², S(m) = Σ<sub>b≤m</sub> χ(b).
+Theorem: the series diverges for Re s &lt; 1/4 and converges for Re s &gt; 1/3.</p>
+</section>
+
+<section class="card">
+<h2>2. Entry 19.2.2 in the Abel reading</h2>
+<div class="row">
+<div><label for="xi">α/2π</label><select id="xi"><option value="sqrt2">√2</option><option value="phi">(1+√5)/2</option><option value="sqrt3">√3</option></select></div>
+<div><label for="s2">s (&lt; −2, not an odd integer)</label><input id="s2" type="number" step="0.1" max="-2.05" value="-2.5"></div>
+</div>
+<table id="outB" aria-live="polite"></table>
+<p class="note">S(α) = ½Σ<sub>d</sub> d<sup>s</sup>cot(dα/2) is the Abel value of Σσ<sub>s</sub>(n)sin(nα); the sum is truncated at d ≤ 2·10<sup>5</sup> and the tail bound uses
+‖dξ‖ &gt; 1/(4d) (partial quotients ≤ 2). Entry 19.2.2 would require the two sides to be equal.</p>
+</section>
+
+<p class="note"><a href="paper/Kenjaev_LN4_Entries_12_2_3_and_19_2_2.pdf">The note</a>, the <a href="verify/verify_ln4_remarks.py">verification script</a> (10 checks) and the figure code accompany this page. Everything runs locally in your browser.</p>
+</main>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+// ---------- Part 1 ----------
+function S4(m) { const r = m % 4; return (r === 1 || r === 2) ? 1 : 0; }
+function A(x) {
+  x = Math.floor(x); const k = Math.floor(Math.sqrt(x));
+  let s = 0;
+  for (let a = 1; a <= k; a++) { if (a % 2 === 0) continue; s += (a % 4 === 1 ? 1 : -1) * S4(Math.floor(x / a)); }
+  const sk = S4(k);
+  return 2 * s - sk * sk;
+}
+const NS = 200000;
+const dN = new Int32Array(NS + 1);
+for (let i = 1; i <= NS; i++) for (let j = i; j <= NS; j += i) dN[j]++;
+function chi(n) { return n % 2 === 0 ? 0 : (n % 4 === 1 ? 1 : -1); }
+function partialSums(s) {
+  const T = new Float64Array(NS + 1); let acc = 0;
+  for (let n = 1; n <= NS; n++) { acc += chi(n) * dN[n] * Math.pow(n, -s); T[n] = acc; }
+  return T;
+}
+function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+function renderA() {
+  let x = parseInt($("x").value, 10); if (!Number.isFinite(x) || x < 1) x = 1; if (x > 1e12) x = 1e12;
+  if (String(x) !== $("x").value && $("x").value !== "") $("x").value = x;
+  const v = A(x);
+  $("outA").innerHTML = `<tr><td>A(x)</td><td class="mono">${v}</td></tr>` +
+    `<tr><td>A(x) / x<sup>1/4</sup></td><td class="mono">${(v / Math.pow(x, 0.25)).toFixed(4)}</td></tr>` +
+    `<tr><td>A(x)² / √x</td><td class="mono">${(v * v / Math.sqrt(x)).toFixed(4)}</td></tr>`;
+}
+function renderT() {
+  const s = parseFloat($("s1").value); $("s1v").textContent = s.toFixed(2);
+  const T = partialSums(s), cv = $("cv1"), g = cv.getContext("2d"), dpr = window.devicePixelRatio || 1;
+  const W = Math.max(200, Math.round(cv.getBoundingClientRect().width)), H = 260;
+  cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+  let lo = Infinity, hi = -Infinity;
+  for (let n = 10; n <= NS; n++) { if (T[n] < lo) lo = T[n]; if (T[n] > hi) hi = T[n]; }
+  const pad = 8, X = n => pad + (W - 2 * pad) * (Math.log10(n) - 1) / (Math.log10(NS) - 1), Y = t => H - pad - (H - 2 * pad) * (t - lo) / (hi - lo || 1);
+  g.strokeStyle = css("--line"); g.beginPath(); g.moveTo(pad, Y(0)); g.lineTo(W - pad, Y(0)); g.stroke();
+  g.strokeStyle = s < 0.25 ? css("--bad") : s > 1 / 3 ? css("--acc") : css("--mut"); g.lineWidth = 1;
+  g.beginPath(); let first = true;
+  for (let k = 0; k <= 3000; k++) { const n = Math.round(Math.pow(10, 1 + k * (Math.log10(NS) - 1) / 3000)); const px = X(n), py = Y(T[n]); if (first) { g.moveTo(px, py); first = false; } else g.lineTo(px, py); }
+  g.stroke();
+  let rlo = Infinity, rhi = -Infinity; for (let n = NS / 10; n <= NS; n++) { if (T[n] < rlo) rlo = T[n]; if (T[n] > rhi) rhi = T[n]; }
+  const verdict = s < 0.25 ? '<span class="bad">diverges</span> (s &lt; 1/4, Theorem 1)' : s > 1 / 3 ? '<span class="ok">converges</span> (s &gt; 1/3)' : '<span class="mid">not decided</span> by the theorem (1/4 ≤ s ≤ 1/3)';
+  $("verdict").innerHTML = `Range of the partial sums on [2·10<sup>4</sup>, 2·10<sup>5</sup>]: <b>${(rhi - rlo).toFixed(3)}</b>. Series at s = ${s.toFixed(2)}: ${verdict}.`;
+}
+// ---------- Part 2 ----------
+function zeta(x) { // x > 2: direct sum + Euler–Maclaurin tail
+  const M = 1000; let s = 0; for (let n = 1; n < M; n++) s += Math.pow(n, -x);
+  return s + Math.pow(M, 1 - x) / (x - 1) + 0.5 * Math.pow(M, -x) + x * Math.pow(M, -x - 1) / 12;
+}
+const DS = 200000;
+function Sabel(a, s) { let t = 0; for (let d = 1; d <= DS; d++) { let u = (d * a / 2) % Math.PI; t += Math.pow(d, s) / Math.tan(u); } return 0.5 * t; }
+function Lside(a, s) { return Math.pow(a, (s + 1) / 2) * (zeta(1 - s) / a + 0.5 * zeta(-s) * Math.tan(Math.PI * s / 2) + Sabel(a, s)); }
+const XI = { sqrt2: Math.SQRT2, phi: (1 + Math.sqrt(5)) / 2, sqrt3: Math.sqrt(3) };
+function sci(v) { const e = Math.floor(Math.log10(Math.abs(v))); return `<span class="nw">${(v / Math.pow(10, e)).toFixed(2)} × 10<sup>${e < 0 ? "−" + (-e) : e}</sup></span>`; }
+function renderB() {
+  let s = parseFloat($("s2").value);
+  if (!Number.isFinite(s) || s >= -2) { s = -2.5; $("s2").value = s; }
+  const odd = Math.abs(s - Math.round(s)) < 1e-9 && Math.abs(Math.round(s)) % 2 === 1;
+  if (odd) { $("outB").innerHTML = `<tr><td>s</td><td class="bad">tan(πs/2) has a pole at odd integers; choose another s</td></tr>`; return; }
+  const a = 2 * Math.PI * XI[$("xi").value], b = 4 * Math.PI * Math.PI / a;
+  const la = Lside(a, s), lb = Lside(b, s), diff = la - lb;
+  const tail = Math.pow(DS, s + 2) / (-s - 2) * (Math.pow(a, (s + 1) / 2) + Math.pow(b, (s + 1) / 2));
+  const fails = Math.abs(diff) > 10 * tail;
+  $("outB").innerHTML = `<tr><td>α, β = 4π²/α</td><td class="mono">${a.toFixed(6)}, ${b.toFixed(6)}</td></tr>` +
+    `<tr><td>left side 𝓛(α)</td><td class="mono">${la.toFixed(10)}</td></tr>` +
+    `<tr><td>right side 𝓛(β)</td><td class="mono">${lb.toFixed(10)}</td></tr>` +
+    `<tr><td>difference</td><td class="mono">${diff.toFixed(10)}</td></tr>` +
+    `<tr><td>truncation bound</td><td class="mono">${sci(tail)}</td></tr>` +
+    `<tr><td>Entry 19.2.2 in the Abel reading</td><td class="${fails ? "bad" : "mid"}">${fails ? "fails (difference ≫ bound)" : "not decided at this precision"}</td></tr>`;
+}
+// ---------- self-test against the Python reference (verify_ln4_remarks.py) ----------
+function selfTest() {
+  const aRef = [[10, 2], [100, -5], [12345, 18], [1e6, -74], [1e9, 223], [1e12, -2530]];
+  const dRef = [["sqrt2", 0.1407562695], ["phi", 0.0658360293], ["sqrt3", -0.0464145101]];
+  const res = [
+    aRef.every(([x, v]) => A(x) === v),
+    Math.abs(zeta(3.5) - 1.12673386731706) < 1e-10 && Math.abs(zeta(2.5) - 1.34148725725092) < 1e-10,
+    dRef.every(([k, v]) => { const a = 2 * Math.PI * XI[k], b = 4 * Math.PI * Math.PI / a; return Math.abs(Lside(a, -2.5) - Lside(b, -2.5) - v) < 1e-7; }),
+  ];
+  const k = res.filter(Boolean).length, el = $("selftest");
+  el.textContent = `self-test ${k}/${res.length}`; el.className = "badge " + (k === res.length ? "ok" : "bad");
+  window.__selftest = res;
+}
+$("x").addEventListener("input", renderA);
+$("s1").addEventListener("input", renderT);
+$("xi").addEventListener("change", renderB);
+$("s2").addEventListener("change", renderB);
+window.addEventListener("resize", renderT);
+renderA(); renderT(); renderB(); selfTest();
+</script>
+</body>
+</html>
