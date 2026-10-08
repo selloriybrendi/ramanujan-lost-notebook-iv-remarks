@@ -21,3 +21,6 @@ mean-square theorem, for the computations (NumPy, mpmath) and to help prepare th
 was verified independently. The author takes full responsibility.
 
 Author: Otakhon U. Kenjaev, ORCID [0009-0009-3566-9285](https://orcid.org/0009-0009-3566-9285)
+
+---
+**Author:** Otakhon U. Kenjaev (also written *Otaxon Kenjayev* / *Отахон Кенжаев*) · [otakhonkenjaev.com](https://otakhonkenjaev.com/) · ORCID [0009-0009-3566-9285](https://orcid.org/0009-0009-3566-9285)
